@@ -1,34 +1,13 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { sendJobApplicationEmail } from "@/lib/emailService";
 
 export default function CareersSection() {
   const { isVisible: titleVisible, elementRef: titleRef } = useScrollAnimation();
   const { isVisible: benefitsVisible, elementRef: benefitsRef } = useScrollAnimation();
   const { isVisible: jobsVisible, elementRef: jobsRef } = useScrollAnimation();
   const { isVisible: formVisible, elementRef: formRef } = useScrollAnimation();
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    position: "",
-    experience: "",
-    resumeFileName: "",
-    coverLetter: "",
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const jobs = [
     {
@@ -80,29 +59,7 @@ export default function CareersSection() {
     },
   ];
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setFormData(prev => ({ ...prev, resumeFileName: file.name }));
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.position || !formData.resumeFileName) {
-      toast({
-        title: "Missing Required Fields",
-        description: "Please fill in all required fields.",
-        variant: "destructive",
-      });
-      return;
-    }
-    jobApplicationMutation.mutate(formData);
-  };
 
   return (
     <section className="py-32 bg-white">
