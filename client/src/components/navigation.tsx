@@ -69,11 +69,13 @@ export default function Navigation() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2 rounded-md text-charcoal hover:text-primary bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
             >
-              {isMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              <div className={`transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : 'rotate-0'}`}>
+                {isMenuOpen ? (
+                  <X className="h-6 w-6 transition-all duration-300" />
+                ) : (
+                  <Menu className="h-6 w-6 transition-all duration-300" />
+                )}
+              </div>
             </button>
           </div>
         </div>
