@@ -70,9 +70,17 @@ The application is configured for Replit deployment with the following setup:
 
 The deployment uses autoscale configuration for handling traffic variations, with proper build and start commands defined for production deployment.
 
-## Changelog
+## Recent Changes
 
-- June 25, 2025. Initial setup
+- June 25, 2025: Enhanced website with new pages and improved navigation
+  - Added About Us page with company mission, values, and why choose us sections
+  - Created dedicated Services page with large icons and newsletter subscription
+  - Added Articles page with search, filtering, and featured articles
+  - Updated navigation with hamburger menu positioned on left side
+  - Replaced service section images with large, colorful icons for better visual appeal
+  - Improved responsive design and user experience across all pages
+
+- June 25, 2025: Initial setup
 
 ## User Preferences
 
