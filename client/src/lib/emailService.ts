@@ -31,21 +31,36 @@ export interface JobApplicationData {
 
 export const sendContactEmail = async (data: ContactFormData): Promise<boolean> => {
   try {
-    const templateParams = {
-      to_name: "Admin",
-      from_name: `${data.firstName} ${data.lastName}`,
-      user_email: data.email,
-      mobile: data.company || 'Not specified',
-      message: `Service Interest: ${data.serviceInterest || 'Not specified'}\n\nMessage:\n${data.message}`,
-    };
-
-    await emailjs.send(
+    // Send first email to admin
+    const adminResponse = await emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID_CONTACT,
-      templateParams,
+      {
+        to_name: "Admin",
+        from_name: `${data.firstName} ${data.lastName}`,
+        user_email: data.email,
+        mobile: data.company || 'Not specified',
+        message: `Service Interest: ${data.serviceInterest || 'Not specified'}\n\nMessage:\n${data.message}`,
+      },
       EMAILJS_PUBLIC_KEY
     );
 
+    console.log('Email to admin sent successfully!', adminResponse.status, adminResponse.text);
+
+    // Send confirmation email to user
+    const userResponse = await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      'template_response_email', // User confirmation template
+      {
+        to_name: `${data.firstName} ${data.lastName}`,
+        user_email: data.email,
+        reply_to: "team.innovatorsnexus@gmail.com",
+        message: "Thank you for reaching out! We will get back to you shortly.",
+      },
+      EMAILJS_PUBLIC_KEY
+    );
+
+    console.log('Confirmation email to user sent successfully!', userResponse.status, userResponse.text);
     return true;
   } catch (error) {
     console.error('Failed to send contact email:', error);
@@ -55,21 +70,36 @@ export const sendContactEmail = async (data: ContactFormData): Promise<boolean> 
 
 export const sendJobApplicationEmail = async (data: JobApplicationData): Promise<boolean> => {
   try {
-    const templateParams = {
-      to_name: "Admin",
-      from_name: `${data.firstName} ${data.lastName}`,
-      user_email: data.email,
-      mobile: data.phone,
-      message: `Job Application for: ${data.position}\n\nExperience: ${data.experience}\n\nCover Letter:\n${data.coverLetter || 'Not provided'}\n\nResume: ${data.resumeFileName || 'Not uploaded'}`,
-    };
-
-    await emailjs.send(
+    // Send job application to admin
+    const adminResponse = await emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID_CAREERS,
-      templateParams,
+      {
+        to_name: "Admin",
+        from_name: `${data.firstName} ${data.lastName}`,
+        user_email: data.email,
+        mobile: data.phone,
+        message: `Job Application for: ${data.position}\n\nExperience: ${data.experience}\n\nCover Letter:\n${data.coverLetter || 'Not provided'}\n\nResume: ${data.resumeFileName || 'Not uploaded'}`,
+      },
       EMAILJS_PUBLIC_KEY
     );
 
+    console.log('Job application sent to admin successfully!', adminResponse.status, adminResponse.text);
+
+    // Send confirmation email to applicant
+    const userResponse = await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      'template_response_email', // User confirmation template
+      {
+        to_name: `${data.firstName} ${data.lastName}`,
+        user_email: data.email,
+        reply_to: "team.innovatorsnexus@gmail.com",
+        message: "Thank you for your job application! We will review your application and get back to you soon.",
+      },
+      EMAILJS_PUBLIC_KEY
+    );
+
+    console.log('Confirmation email to applicant sent successfully!', userResponse.status, userResponse.text);
     return true;
   } catch (error) {
     console.error('Failed to send job application email:', error);

@@ -67,8 +67,8 @@ export default function ContactSection() {
       
       if (success) {
         toast({
-          title: "Message Sent!",
-          description: "We'll get back to you within 24 hours.",
+          title: "Message Sent Successfully!",
+          description: "Thank you for reaching out! We will get back to you shortly.",
         });
         setFormData({
           firstName: "",
@@ -82,9 +82,10 @@ export default function ContactSection() {
         throw new Error("Email sending failed");
       }
     } catch (error) {
+      console.error('Failed to send message:', error);
       toast({
         title: "Failed to Send Message",
-        description: "Please try again or contact us directly.",
+        description: "Please try again later.",
         variant: "destructive",
       });
     } finally {
