@@ -81,23 +81,24 @@ export default function Navigation() {
         </div>
       </div>
       {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <>
-          {/* Backdrop */}
-          <div 
-            className="fixed inset-0 z-40 md:hidden bg-[#00000000]"
-            onClick={() => setIsMenuOpen(false)}
-          />
-          
-          {/* Slide-in Menu */}
-          <div className={`fixed top-0 left-0 h-screen w-64 bg-white shadow-2xl z-50 md:hidden transform transition-transform duration-300 ease-in-out border-r border-gray-200 ${
-            isMenuOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}>
+      <>
+        {/* Backdrop */}
+        <div 
+          className={`fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-500 ${
+            isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
+          onClick={() => setIsMenuOpen(false)}
+        />
+        
+        {/* Slide-in Menu */}
+        <div className={`fixed top-0 left-0 h-screen w-64 bg-white shadow-2xl z-50 md:hidden transform transition-all duration-500 ease-in-out border-r border-gray-200 ${
+          isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}>
             <div className={`p-4 border-b border-neutral bg-white transition-all duration-500 ${
               isMenuOpen 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 -translate-y-4'
-            }`} style={{ transitionDelay: isMenuOpen ? '100ms' : '0ms' }}>
+            }`} style={{ transitionDelay: isMenuOpen ? '200ms' : '0ms' }}>
               <Link href="/" className="text-xl font-bold font-poppins text-primary">
                 Innovator Nexus
               </Link>
@@ -141,8 +142,7 @@ export default function Navigation() {
               ))}
             </div>
           </div>
-        </>
-      )}
+      </>
     </nav>
   );
 }
