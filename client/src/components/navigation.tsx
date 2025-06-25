@@ -81,30 +81,54 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-neutral">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {navLinks.map((link) => (
-              link.href.startsWith("#") ? (
-                <button
-                  key={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  className="block px-3 py-2 text-charcoal hover:text-primary transition-colors duration-300 w-full text-left"
-                >
-                  {link.label}
-                </button>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block px-3 py-2 text-charcoal hover:text-primary transition-colors duration-300 w-full text-left"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.label}
+        <>
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-black/50 z-40 md:hidden"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          
+          {/* Slide-in Menu */}
+          <div className={`fixed top-0 left-0 h-full w-64 bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+            isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}>
+            <div className="p-4 border-b border-neutral">
+              <div className="flex items-center justify-between">
+                <Link href="/" className="text-xl font-bold font-poppins text-primary">
+                  Innovator Nexus
                 </Link>
-              )
-            ))}
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="p-2 rounded-md text-charcoal hover:text-primary"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
+            </div>
+            <div className="p-4 space-y-2">
+              {navLinks.map((link) => (
+                link.href.startsWith("#") ? (
+                  <button
+                    key={link.href}
+                    onClick={() => handleNavClick(link.href)}
+                    className="block w-full px-3 py-3 text-left text-charcoal hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-300"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="block px-3 py-3 text-charcoal hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-300"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              ))}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </nav>
   );
