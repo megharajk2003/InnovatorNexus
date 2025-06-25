@@ -188,7 +188,7 @@ export default function CareersSection() {
                       href="http://forms.gle/NvfDYjAWFhfR3XHV7"
                       target="_blank"
                       rel="noopener noreferrer"
-                      
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                     >
                       Apply Now
                     </a>
@@ -198,8 +198,7 @@ export default function CareersSection() {
             </Card>
           ))}
         </div>
-
-       
+      </div>
     </section>
   );
 }
