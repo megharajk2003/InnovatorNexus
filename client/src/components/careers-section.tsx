@@ -316,10 +316,10 @@ export default function CareersSection() {
               </div>
               <Button
                 type="submit"
-                disabled={jobApplicationMutation.isPending}
+                disabled={isSubmitting}
                 className="w-full px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl"
               >
-                {jobApplicationMutation.isPending ? "Submitting..." : "Submit Application"}
+                {isSubmitting ? "Submitting..." : "Submit Application"}
               </Button>
             </form>
           </div>

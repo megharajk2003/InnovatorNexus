@@ -49,7 +49,7 @@ export default function ContactSection() {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.serviceInterest || !formData.message) {
       toast({
@@ -59,7 +59,37 @@ export default function ContactSection() {
       });
       return;
     }
-    contactMutation.mutate(formData);
+    
+    setIsSubmitting(true);
+    
+    try {
+      const success = await sendContactEmail(formData);
+      
+      if (success) {
+        toast({
+          title: "Message Sent!",
+          description: "We'll get back to you within 24 hours.",
+        });
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          company: "",
+          serviceInterest: "",
+          message: "",
+        });
+      } else {
+        throw new Error("Email sending failed");
+      }
+    } catch (error) {
+      toast({
+        title: "Failed to Send Message",
+        description: "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getIconColor = (color: string) => {
