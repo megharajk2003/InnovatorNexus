@@ -89,23 +89,23 @@ export default function Navigation() {
           />
           
           {/* Slide-in Menu */}
-          <div className={`fixed top-0 left-0 h-full w-64 bg-white shadow-2xl z-50 md:hidden transform transition-transform duration-300 ease-in-out border-r border-gray-200 ${
+          <div className={`fixed top-0 left-0 h-screen w-64 bg-white shadow-2xl z-50 md:hidden transform transition-transform duration-300 ease-in-out border-r border-gray-200 ${
             isMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}>
-            <div className="p-4 border-b border-neutral">
+            <div className="p-4 border-b border-neutral bg-white">
               <div className="flex items-center justify-between">
                 <Link href="/" className="text-xl font-bold font-poppins text-primary">
                   Innovator Nexus
                 </Link>
                 <button
                   onClick={() => setIsMenuOpen(false)}
-                  className="p-2 rounded-md text-charcoal hover:text-primary"
+                  className="p-2 rounded-md text-charcoal hover:text-primary bg-white hover:bg-gray-50"
                 >
                   <X className="h-6 w-6" />
                 </button>
               </div>
             </div>
-            <div className="p-4 space-y-2">
+            <div className="p-4 space-y-2 bg-white h-full">
               {navLinks.map((link) => (
                 link.href.startsWith("#") ? (
                   <button
