@@ -6,9 +6,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { sendContactEmail } from "@/lib/emailService";
 
 export default function ContactSection() {
   const { isVisible: titleVisible, elementRef: titleRef } = useScrollAnimation();
@@ -23,30 +22,7 @@ export default function ContactSection() {
     message: "",
   });
 
-  const contactMutation = useMutation({
-    mutationFn: (data: typeof formData) => apiRequest("POST", "/api/contact-messages", data),
-    onSuccess: () => {
-      toast({
-        title: "Message Sent!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        company: "",
-        serviceInterest: "",
-        message: "",
-      });
-    },
-    onError: () => {
-      toast({
-        title: "Failed to Send Message",
-        description: "Please try again or contact us directly.",
-        variant: "destructive",
-      });
-    },
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const contactInfo = [
     {
@@ -251,10 +227,10 @@ export default function ContactSection() {
               </div>
               <Button
                 type="submit"
-                disabled={contactMutation.isPending}
+                disabled={isSubmitting}
                 className="w-full px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl"
               >
-                {contactMutation.isPending ? "Sending..." : "Send Message"}
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </div>
