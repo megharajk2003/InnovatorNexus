@@ -15,11 +15,13 @@ export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
       },
       {
-        threshold: options.threshold || 0.1,
-        rootMargin: options.rootMargin || "0px",
+        threshold: options.threshold || 0.15,
+        rootMargin: options.rootMargin || "-50px 0px -50px 0px",
       }
     );
 
