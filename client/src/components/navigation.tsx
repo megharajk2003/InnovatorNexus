@@ -67,7 +67,7 @@ export default function Navigation() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md text-charcoal hover:text-primary bg-white hover:bg-neutral/50 transition-colors duration-300"
+              className="p-2 rounded-md text-charcoal hover:text-primary bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
             >
               {isMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -89,7 +89,7 @@ export default function Navigation() {
           />
           
           {/* Slide-in Menu */}
-          <div className={`fixed top-0 left-0 h-full w-64 bg-white shadow-xl z-50 md:hidden transform transition-transform duration-300 ease-in-out ${
+          <div className={`fixed top-0 left-0 h-full w-64 bg-white shadow-2xl z-50 md:hidden transform transition-transform duration-300 ease-in-out border-r border-gray-200 ${
             isMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}>
             <div className="p-4 border-b border-neutral">
