@@ -5,8 +5,9 @@ export default function Footer() {
   const services = [
     "Social Media Management",
     "Content Creation",
-    "Business Strategy",
+    "Business Strategy", 
     "Graphics Design",
+    "Web Design",
   ];
 
   const company = ["About Us", "Careers", "Case Studies", "Blog"];

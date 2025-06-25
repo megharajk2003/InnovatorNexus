@@ -48,6 +48,7 @@ export class MemStorage implements IStorage {
     const id = this.currentJobApplicationId++;
     const application: JobApplication = {
       ...insertApplication,
+      coverLetter: insertApplication.coverLetter || null,
       id,
       createdAt: new Date(),
     };
@@ -65,6 +66,7 @@ export class MemStorage implements IStorage {
     const id = this.currentContactMessageId++;
     const message: ContactMessage = {
       ...insertMessage,
+      company: insertMessage.company || null,
       id,
       createdAt: new Date(),
     };

@@ -77,6 +77,14 @@ export default function CareersSection() {
       skills: ["Adobe Creative Suite", "Brand Design", "UI/UX"],
       id: "graphic-designer",
     },
+    {
+      title: "Web Designer & Developer",
+      type: "Full-time • Remote",
+      salary: "$65,000 - $80,000",
+      description: "Create modern, responsive websites and web applications with exceptional user experiences and optimal performance.",
+      skills: ["HTML/CSS", "JavaScript", "React", "Responsive Design"],
+      id: "web-designer",
+    },
   ];
 
   const benefits = [
@@ -298,6 +306,7 @@ export default function CareersSection() {
                     <SelectItem value="social-media-manager">Senior Social Media Manager</SelectItem>
                     <SelectItem value="content-creator">Content Creator & Copywriter</SelectItem>
                     <SelectItem value="graphic-designer">Graphic Designer</SelectItem>
+                    <SelectItem value="web-designer">Web Designer & Developer</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

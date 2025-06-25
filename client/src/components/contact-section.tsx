@@ -230,6 +230,7 @@ export default function ContactSection() {
                     <SelectItem value="content-creation">Content Creation</SelectItem>
                     <SelectItem value="business-strategy">Business Strategy</SelectItem>
                     <SelectItem value="graphics-design">Graphics Design</SelectItem>
+                    <SelectItem value="web-design">Web Design</SelectItem>
                     <SelectItem value="all-services">All Services</SelectItem>
                   </SelectContent>
                 </Select>
