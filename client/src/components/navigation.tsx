@@ -80,13 +80,12 @@ export default function Navigation() {
           </div>
         </div>
       </div>
-
       {/* Mobile Navigation */}
       {isMenuOpen && (
         <>
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 bg-black/50 z-40 md:hidden"
+            className="fixed inset-0 z-40 md:hidden bg-[#00000000]"
             onClick={() => setIsMenuOpen(false)}
           />
           
