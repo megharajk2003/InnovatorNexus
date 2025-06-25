@@ -1,10 +1,10 @@
 import emailjs from '@emailjs/browser';
 
 // EmailJS configuration
-const EMAILJS_SERVICE_ID = 'service_innovator_nexus';
-const EMAILJS_TEMPLATE_ID_CONTACT = 'template_contact_form';
-const EMAILJS_TEMPLATE_ID_CAREERS = 'template_careers_form';
-const EMAILJS_PUBLIC_KEY = 'YOUR_EMAILJS_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID = 'gmail';
+const EMAILJS_TEMPLATE_ID_CONTACT = 'admin_mail';
+const EMAILJS_TEMPLATE_ID_CAREERS = 'admin_mail';
+const EMAILJS_PUBLIC_KEY = 'ejspucaxOGA1LuWup';
 
 // Initialize EmailJS
 emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -32,19 +32,18 @@ export interface JobApplicationData {
 export const sendContactEmail = async (data: ContactFormData): Promise<boolean> => {
   try {
     const templateParams = {
-      to_email: 'team.innovatorsnexus@gmail.com',
+      to_name: "Admin",
       from_name: `${data.firstName} ${data.lastName}`,
-      from_email: data.email,
-      company: data.company || 'Not specified',
-      service_interest: data.serviceInterest || 'Not specified',
-      message: data.message,
-      reply_to: data.email,
+      user_email: data.email,
+      mobile: data.company || 'Not specified',
+      message: `Service Interest: ${data.serviceInterest || 'Not specified'}\n\nMessage:\n${data.message}`,
     };
 
     await emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID_CONTACT,
-      templateParams
+      templateParams,
+      EMAILJS_PUBLIC_KEY
     );
 
     return true;
@@ -57,21 +56,18 @@ export const sendContactEmail = async (data: ContactFormData): Promise<boolean> 
 export const sendJobApplicationEmail = async (data: JobApplicationData): Promise<boolean> => {
   try {
     const templateParams = {
-      to_email: 'team.innovatorsnexus@gmail.com',
-      applicant_name: `${data.firstName} ${data.lastName}`,
-      applicant_email: data.email,
-      applicant_phone: data.phone,
-      position: data.position,
-      experience: data.experience,
-      cover_letter: data.coverLetter || 'Not provided',
-      resume_filename: data.resumeFileName || 'Not uploaded',
-      reply_to: data.email,
+      to_name: "Admin",
+      from_name: `${data.firstName} ${data.lastName}`,
+      user_email: data.email,
+      mobile: data.phone,
+      message: `Job Application for: ${data.position}\n\nExperience: ${data.experience}\n\nCover Letter:\n${data.coverLetter || 'Not provided'}\n\nResume: ${data.resumeFileName || 'Not uploaded'}`,
     };
 
     await emailjs.send(
       EMAILJS_SERVICE_ID,
       EMAILJS_TEMPLATE_ID_CAREERS,
-      templateParams
+      templateParams,
+      EMAILJS_PUBLIC_KEY
     );
 
     return true;

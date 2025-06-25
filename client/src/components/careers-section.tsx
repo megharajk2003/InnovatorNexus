@@ -8,9 +8,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useMutation, queryClient } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import { sendJobApplicationEmail } from "@/lib/emailService";
 
 export default function CareersSection() {
   const { isVisible: titleVisible, elementRef: titleRef } = useScrollAnimation();
@@ -22,35 +21,14 @@ export default function CareersSection() {
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
     position: "",
+    experience: "",
     resumeFileName: "",
     coverLetter: "",
   });
 
-  const jobApplicationMutation = useMutation({
-    mutationFn: (data: typeof formData) => apiRequest("POST", "/api/job-applications", data),
-    onSuccess: () => {
-      toast({
-        title: "Application Submitted!",
-        description: "We'll review your application and get back to you soon.",
-      });
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        position: "",
-        resumeFileName: "",
-        coverLetter: "",
-      });
-    },
-    onError: () => {
-      toast({
-        title: "Submission Failed",
-        description: "Please try again or contact us directly.",
-        variant: "destructive",
-      });
-    },
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const jobs = [
     {

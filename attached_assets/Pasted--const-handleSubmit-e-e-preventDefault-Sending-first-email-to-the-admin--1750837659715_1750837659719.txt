@@ -1,0 +1,62 @@
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Sending first email to the admin
+    emailjs
+      .send(
+        "gmail", // Service ID
+        "admin_mail", // Template ID for admin email
+        {
+          to_name: "Admin", // Admin's name or greeting (optional)
+          from_name: formData.from_name, // User's name from form data
+          user_email: formData.email, // User's email for reference
+          mobile: formData.mobile, // User's mobile (optional)
+          message: formData.message, // Message content from user
+        },
+        // "5Bg6X9nUDVeHR5YU5" // personal
+        "ejspucaxOGA1LuWup" //company
+      )
+      .then((response) => {
+        console.log(
+          "Email to admin sent successfully!",
+          response.status,
+          response.text
+        );
+
+        // After sending to admin, send the confirmation email to the user
+        return emailjs.send(
+          "gmail", // Service ID (same)
+          "template_response_email", // Template ID for the user confirmation email
+          {
+            to_name: formData.from_name, // User's name for personalized greeting
+            user_email: formData.email, // Dynamic "To Email" for user
+            reply_to: "contact@yourcompany.com", // Company's contact email for replies
+            message:
+              "Thank you for reaching out! We will get back to you shortly.",
+          },
+          // "5Bg6X9nUDVeHR5YU5" // personal EmailJS User ID
+          "ejspucaxOGA1LuWup" //company
+        );
+      })
+      .then((response) => {
+        console.log(
+          "Confirmation email to user sent successfully!",
+          response.status,
+          response.text
+        );
+        alert("Message sent successfully!");
+
+        // Reset form after both emails are sent
+        setFormData({
+          to_name: "",
+          from_name: "",
+          email: "",
+          mobile: "",
+          message: "",
+        });
+      })
+      .catch((err) => {
+        console.error("Failed to send message:", err);
+        alert("Failed to send message. Please try again later.");
+      });
+  };
