@@ -1,18 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Zap } from "lucide-react";
+import { Link } from "wouter";
 
 export default function HeroSection() {
-  const handleGetStarted = () => {
-    const element = document.querySelector("#contact");
-    if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
-    }
-  };
-
   const handleViewWork = () => {
     const element = document.querySelector("#services");
     if (element) {
@@ -39,12 +29,11 @@ export default function HeroSection() {
               content creation, strategic planning, and stunning graphic design.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                onClick={handleGetStarted}
-                className="px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl"
-              >
-                Get Started Today
-              </Button>
+              <Link href="/contact">
+                <Button className="px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl">
+                  Get Started Today
+                </Button>
+              </Link>
               <Button
                 variant="outline"
                 onClick={handleViewWork}

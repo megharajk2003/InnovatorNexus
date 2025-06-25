@@ -10,8 +10,13 @@ import { Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, queryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 export default function CareersSection() {
+  const { isVisible: titleVisible, elementRef: titleRef } = useScrollAnimation();
+  const { isVisible: benefitsVisible, elementRef: benefitsRef } = useScrollAnimation();
+  const { isVisible: jobsVisible, elementRef: jobsRef } = useScrollAnimation();
+  const { isVisible: formVisible, elementRef: formRef } = useScrollAnimation();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -114,9 +119,16 @@ export default function CareersSection() {
   };
 
   return (
-    <section id="careers" className="py-32 bg-white">
+    <section className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <div 
+          ref={titleRef}
+          className={`text-center mb-20 transition-all duration-1000 ${
+            titleVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl lg:text-5xl font-bold font-poppins mb-6">
             Join Our <span className="text-primary">Team</span>
           </h2>
@@ -125,15 +137,30 @@ export default function CareersSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          <div>
+        <div 
+          ref={benefitsRef}
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 transition-all duration-1000 ${
+            benefitsVisible 
+              ? 'opacity-100 translate-x-0' 
+              : 'opacity-0 translate-x-8'
+          }`}
+        >
+          <div className={`transition-all duration-1000 delay-200 ${
+            benefitsVisible 
+              ? 'opacity-100 translate-x-0' 
+              : 'opacity-0 -translate-x-8'
+          }`}>
             <img
               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
               alt="Professional team meeting in modern office"
               className="rounded-2xl shadow-lg w-full h-auto"
             />
           </div>
-          <div className="space-y-6">
+          <div className={`space-y-6 transition-all duration-1000 delay-400 ${
+            benefitsVisible 
+              ? 'opacity-100 translate-x-0' 
+              : 'opacity-0 translate-x-8'
+          }`}>
             <h3 className="text-3xl font-bold font-poppins text-charcoal">Why Work With Us?</h3>
             <div className="space-y-4">
               {benefits.map((benefit, index) => (
@@ -152,11 +179,26 @@ export default function CareersSection() {
         </div>
 
         {/* Job Listings */}
-        <div className="space-y-6">
-          <h3 className="text-3xl font-bold font-poppins text-center mb-12">Open Positions</h3>
+        <div 
+          ref={jobsRef}
+          className="space-y-6"
+        >
+          <h3 className={`text-3xl font-bold font-poppins text-center mb-12 transition-all duration-1000 ${
+            jobsVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}>Open Positions</h3>
           
           {jobs.map((job, index) => (
-            <Card key={index} className="border-2 border-neutral hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+            <Card 
+              key={index} 
+              className={`border-2 border-neutral hover:border-primary/30 hover:shadow-lg transition-all duration-500 ${
+                jobsVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${index * 150}ms` }}
+            >
               <CardContent className="p-8">
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                   <div className="space-y-4">
@@ -192,7 +234,14 @@ export default function CareersSection() {
         </div>
 
         {/* Application Form */}
-        <div className="mt-20 bg-neutral rounded-2xl p-8 lg:p-12">
+        <div 
+          ref={formRef}
+          className={`mt-20 bg-neutral rounded-2xl p-8 lg:p-12 transition-all duration-1000 ${
+            formVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="max-w-2xl mx-auto">
             <h3 className="text-3xl font-bold font-poppins text-center mb-8">Submit Your Application</h3>
             <form onSubmit={handleSubmit} className="space-y-6">

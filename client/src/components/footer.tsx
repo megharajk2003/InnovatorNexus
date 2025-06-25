@@ -1,4 +1,5 @@
 import { Facebook, Twitter, Linkedin, Github } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Footer() {
   const services = [
@@ -76,12 +77,15 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-300">
               {company.map((item, index) => (
                 <li key={index}>
-                  <button
-                    onClick={() => item === "Careers" ? handleNavClick("#careers") : null}
-                    className="hover:text-white transition-colors duration-300 text-left"
-                  >
-                    {item}
-                  </button>
+                  {item === "Careers" ? (
+                    <Link href="/careers" className="hover:text-white transition-colors duration-300">
+                      {item}
+                    </Link>
+                  ) : (
+                    <button className="hover:text-white transition-colors duration-300 text-left">
+                      {item}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -92,12 +96,15 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-300">
               {support.map((item, index) => (
                 <li key={index}>
-                  <button
-                    onClick={() => item === "Contact Us" ? handleNavClick("#contact") : null}
-                    className="hover:text-white transition-colors duration-300 text-left"
-                  >
-                    {item}
-                  </button>
+                  {item === "Contact Us" ? (
+                    <Link href="/contact" className="hover:text-white transition-colors duration-300">
+                      {item}
+                    </Link>
+                  ) : (
+                    <button className="hover:text-white transition-colors duration-300 text-left">
+                      {item}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>

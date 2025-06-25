@@ -8,8 +8,11 @@ import { MapPin, Phone, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 export default function ContactSection() {
+  const { isVisible: titleVisible, elementRef: titleRef } = useScrollAnimation();
+  const { isVisible: contentVisible, elementRef: contentRef } = useScrollAnimation();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -97,9 +100,16 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-32 bg-gradient-to-br from-primary/5 to-secondary/5">
+    <section className="py-32 bg-gradient-to-br from-primary/5 to-secondary/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <div 
+          ref={titleRef}
+          className={`text-center mb-20 transition-all duration-1000 ${
+            titleVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl lg:text-5xl font-bold font-poppins mb-6">
             Get In <span className="text-primary">Touch</span>
           </h2>
@@ -108,9 +118,16 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div 
+          ref={contentRef}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12"
+        >
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div className={`space-y-8 transition-all duration-1000 ${
+            contentVisible 
+              ? 'opacity-100 translate-x-0' 
+              : 'opacity-0 -translate-x-8'
+          }`}>
             <div>
               <h3 className="text-2xl font-bold font-poppins text-charcoal mb-6">Contact Information</h3>
               <div className="space-y-6">
@@ -140,7 +157,11 @@ export default function ContactSection() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
+          <div className={`bg-white rounded-2xl p-8 shadow-lg transition-all duration-1000 delay-300 ${
+            contentVisible 
+              ? 'opacity-100 translate-x-0' 
+              : 'opacity-0 translate-x-8'
+          }`}>
             <h3 className="text-2xl font-bold font-poppins text-charcoal mb-6">Send us a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

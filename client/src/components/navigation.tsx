@@ -1,25 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "wouter";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [location] = useLocation();
 
   const navLinks = [
-    { href: "#home", label: "Home" },
+    { href: "/", label: "Home" },
     { href: "#services", label: "Services" },
     { href: "#testimonials", label: "Testimonials" },
-    { href: "#careers", label: "Careers" },
-    { href: "#contact", label: "Contact" },
+    { href: "/careers", label: "Careers" },
+    { href: "/contact", label: "Contact" },
   ];
 
   const handleNavClick = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
+    if (href.startsWith("#")) {
+      const element = document.querySelector(href);
+      if (element) {
+        const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
+      }
     }
     setIsMenuOpen(false);
   };
@@ -29,22 +33,32 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <span className="text-2xl font-bold font-poppins text-primary">
+            <Link href="/" className="text-2xl font-bold font-poppins text-primary">
               Innovator Nexus
-            </span>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  className="text-charcoal hover:text-primary transition-colors duration-300"
-                >
-                  {link.label}
-                </button>
+                link.href.startsWith("#") ? (
+                  <button
+                    key={link.href}
+                    onClick={() => handleNavClick(link.href)}
+                    className="text-charcoal hover:text-primary transition-colors duration-300"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-charcoal hover:text-primary transition-colors duration-300"
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
             </div>
           </div>
@@ -70,13 +84,24 @@ export default function Navigation() {
         <div className="md:hidden bg-white border-t border-neutral">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => handleNavClick(link.href)}
-                className="block px-3 py-2 text-charcoal hover:text-primary transition-colors duration-300 w-full text-left"
-              >
-                {link.label}
-              </button>
+              link.href.startsWith("#") ? (
+                <button
+                  key={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  className="block px-3 py-2 text-charcoal hover:text-primary transition-colors duration-300 w-full text-left"
+                >
+                  {link.label}
+                </button>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block px-3 py-2 text-charcoal hover:text-primary transition-colors duration-300 w-full text-left"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </div>
         </div>

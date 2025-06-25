@@ -1,6 +1,9 @@
 import { Star } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 export default function TestimonialsSection() {
+  const { isVisible: titleVisible, elementRef: titleRef } = useScrollAnimation();
+  const { isVisible: cardsVisible, elementRef: cardsRef } = useScrollAnimation();
   const testimonials = [
     {
       name: "Sarah Mitchell",
@@ -44,7 +47,14 @@ export default function TestimonialsSection() {
   return (
     <section id="testimonials" className="py-32 bg-neutral">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <div 
+          ref={titleRef}
+          className={`text-center mb-20 transition-all duration-1000 ${
+            titleVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl lg:text-5xl font-bold font-poppins mb-6">
             What Our <span className="text-primary">Clients Say</span>
           </h2>
@@ -53,11 +63,19 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div 
+          ref={cardsRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 ${
+                cardsVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${index * 200}ms` }}
             >
               <div className="flex items-center mb-6">
                 <div className="flex space-x-1">

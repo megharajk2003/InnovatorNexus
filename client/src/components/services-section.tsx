@@ -1,6 +1,10 @@
 import { MessageCircle, Edit, BarChart3, Palette } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 
 export default function ServicesSection() {
+  const { isVisible: titleVisible, elementRef: titleRef } = useScrollAnimation();
+  const { isVisible: servicesVisible, elementRef: servicesRef } = useScrollAnimation();
+  const { isVisible: imagesVisible, elementRef: imagesRef } = useScrollAnimation();
   const services = [
     {
       icon: MessageCircle,
@@ -79,7 +83,14 @@ export default function ServicesSection() {
   return (
     <section id="services" className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
+        <div 
+          ref={titleRef}
+          className={`text-center mb-20 transition-all duration-1000 ${
+            titleVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl lg:text-5xl font-bold font-poppins mb-6">
             Our <span className="text-primary">Services</span>
           </h2>
@@ -88,7 +99,10 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div 
+          ref={servicesRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           {services.map((service, index) => {
             const colorClasses = getColorClasses(service.color);
             const Icon = service.icon;
@@ -96,7 +110,12 @@ export default function ServicesSection() {
             return (
               <div
                 key={index}
-                className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral"
+                className={`group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-neutral ${
+                  servicesVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div className={`w-16 h-16 ${colorClasses.bg} rounded-xl flex items-center justify-center mb-6 transition-colors duration-300`}>
                   <Icon className={`w-8 h-8 ${colorClasses.text}`} />
@@ -112,13 +131,21 @@ export default function ServicesSection() {
         </div>
 
         {/* Service Showcase Images */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+        <div 
+          ref={imagesRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16"
+        >
           {showcaseImages.map((image, index) => (
             <img
               key={index}
               src={image.src}
               alt={image.alt}
-              className="rounded-xl shadow-lg w-full h-48 object-cover"
+              className={`rounded-xl shadow-lg w-full h-48 object-cover transition-all duration-500 ${
+                imagesVisible 
+                  ? 'opacity-100 scale-100' 
+                  : 'opacity-0 scale-95'
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             />
           ))}
         </div>
