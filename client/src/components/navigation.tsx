@@ -84,7 +84,9 @@ export default function Navigation() {
       <>
         {/* Backdrop */}
         <div 
-          className="fixed inset-0 z-40 md:hidden transition-opacity duration-500 opacity-100 bg-[#ffffff]"
+          className={`fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-500 ${
+            isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
           onClick={() => setIsMenuOpen(false)}
         />
         
