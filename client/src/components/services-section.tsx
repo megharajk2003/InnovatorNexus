@@ -76,7 +76,7 @@ export default function ServicesSection() {
 
   return (
     <section id="services" className="py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-[white]">
         <div 
           ref={titleRef}
           className={`text-center mb-20 transition-all duration-1000 ${
