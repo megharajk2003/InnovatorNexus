@@ -3,15 +3,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { sendContactEmail } from "@/lib/emailService";
 
 export default function ContactSection() {
-  const { isVisible: titleVisible, elementRef: titleRef } = useScrollAnimation();
-  const { isVisible: contentVisible, elementRef: contentRef } = useScrollAnimation();
+  const { isVisible: titleVisible, elementRef: titleRef } =
+    useScrollAnimation();
+  const { isVisible: contentVisible, elementRef: contentRef } =
+    useScrollAnimation();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -25,33 +33,39 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Address",
-      content: "123 Innovation Street\nDigital District, CA 90210",
-      color: "primary",
-    },
+    // {
+    //   icon: MapPin,
+    //   title: "Address",
+    //   content: "123 Innovation Street\nDigital District, CA 90210",
+    //   color: "primary",
+    // },
     {
       icon: Phone,
       title: "Phone",
-      content: "+1 (555) 123-4567",
+      content: "+91 9488026106",
       color: "secondary",
     },
     {
       icon: Mail,
       title: "Email",
-      content: "hello@innovatornexus.com",
+      content: "team.innovatorsnexus@gmail.com",
       color: "accent",
     },
   ];
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.serviceInterest || !formData.message) {
+    if (
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.email ||
+      !formData.serviceInterest ||
+      !formData.message
+    ) {
       toast({
         title: "Missing Required Fields",
         description: "Please fill in all required fields.",
@@ -59,16 +73,17 @@ export default function ContactSection() {
       });
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     try {
       const success = await sendContactEmail(formData);
-      
+
       if (success) {
         toast({
           title: "Message Sent Successfully!",
-          description: "Thank you for reaching out! We will get back to you shortly.",
+          description:
+            "Thank you for reaching out! We will get back to you shortly.",
         });
         setFormData({
           firstName: "",
@@ -82,7 +97,7 @@ export default function ContactSection() {
         throw new Error("Email sending failed");
       }
     } catch (error) {
-      console.error('Failed to send message:', error);
+      console.error("Failed to send message:", error);
       toast({
         title: "Failed to Send Message",
         description: "Please try again later.",
@@ -109,45 +124,56 @@ export default function ContactSection() {
   return (
     <section className="py-32 bg-gradient-to-br from-primary/5 to-secondary/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div 
+        <div
           ref={titleRef}
           className={`text-center mb-20 transition-all duration-1000 ${
-            titleVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
+            titleVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
           }`}
         >
           <h2 className="text-4xl lg:text-5xl font-bold font-poppins mb-6">
             Get In <span className="text-primary">Touch</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to transform your digital presence? Let's discuss how we can help you achieve your goals.
+            Ready to transform your digital presence? Let's discuss how we can
+            help you achieve your goals.
           </p>
         </div>
 
-        <div 
+        <div
           ref={contentRef}
           className="grid grid-cols-1 lg:grid-cols-2 gap-12"
         >
           {/* Contact Information */}
-          <div className={`space-y-8 transition-all duration-1000 ${
-            contentVisible 
-              ? 'opacity-100 translate-x-0' 
-              : 'opacity-0 -translate-x-8'
-          }`}>
+          <div
+            className={`space-y-8 transition-all duration-1000 ${
+              contentVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-8"
+            }`}
+          >
             <div>
-              <h3 className="text-2xl font-bold font-poppins text-charcoal mb-6">Contact Information</h3>
+              <h3 className="text-2xl font-bold font-poppins text-charcoal mb-6">
+                Contact Information
+              </h3>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => {
                   const Icon = info.icon;
                   return (
                     <div key={index} className="flex items-start space-x-4">
-                      <div className={`w-12 h-12 ${getIconColor(info.color)} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                      <div
+                        className={`w-12 h-12 ${getIconColor(info.color)} rounded-xl flex items-center justify-center flex-shrink-0`}
+                      >
                         <Icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-charcoal">{info.title}</h4>
-                        <p className="text-gray-600 whitespace-pre-line">{info.content}</p>
+                        <h4 className="font-semibold text-charcoal">
+                          {info.title}
+                        </h4>
+                        <p className="text-gray-600 whitespace-pre-line">
+                          {info.content}
+                        </p>
                       </div>
                     </div>
                   );
@@ -164,43 +190,60 @@ export default function ContactSection() {
           </div>
 
           {/* Contact Form */}
-          <div className={`bg-white rounded-2xl p-8 shadow-lg transition-all duration-1000 delay-300 ${
-            contentVisible 
-              ? 'opacity-100 translate-x-0' 
-              : 'opacity-0 translate-x-8'
-          }`}>
-            <h3 className="text-2xl font-bold font-poppins text-charcoal mb-6">Send us a Message</h3>
+          <div
+            className={`bg-white rounded-2xl p-8 shadow-lg transition-all duration-1000 delay-300 ${
+              contentVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-8"
+            }`}
+          >
+            <h3 className="text-2xl font-bold font-poppins text-charcoal mb-6">
+              Send us a Message
+            </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="contactFirstName" className="block text-sm font-semibold text-charcoal mb-2">
+                  <Label
+                    htmlFor="contactFirstName"
+                    className="block text-sm font-semibold text-charcoal mb-2"
+                  >
                     First Name *
                   </Label>
                   <Input
                     id="contactFirstName"
                     type="text"
                     value={formData.firstName}
-                    onChange={(e) => handleInputChange("firstName", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("firstName", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-300"
                     required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="contactLastName" className="block text-sm font-semibold text-charcoal mb-2">
+                  <Label
+                    htmlFor="contactLastName"
+                    className="block text-sm font-semibold text-charcoal mb-2"
+                  >
                     Last Name *
                   </Label>
                   <Input
                     id="contactLastName"
                     type="text"
                     value={formData.lastName}
-                    onChange={(e) => handleInputChange("lastName", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("lastName", e.target.value)
+                    }
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-300"
                     required
                   />
                 </div>
               </div>
               <div>
-                <Label htmlFor="contactEmail" className="block text-sm font-semibold text-charcoal mb-2">
+                <Label
+                  htmlFor="contactEmail"
+                  className="block text-sm font-semibold text-charcoal mb-2"
+                >
                   Email Address *
                 </Label>
                 <Input
@@ -213,7 +256,10 @@ export default function ContactSection() {
                 />
               </div>
               <div>
-                <Label htmlFor="contactCompany" className="block text-sm font-semibold text-charcoal mb-2">
+                <Label
+                  htmlFor="contactCompany"
+                  className="block text-sm font-semibold text-charcoal mb-2"
+                >
                   Company (Optional)
                 </Label>
                 <Input
@@ -225,25 +271,44 @@ export default function ContactSection() {
                 />
               </div>
               <div>
-                <Label htmlFor="contactService" className="block text-sm font-semibold text-charcoal mb-2">
+                <Label
+                  htmlFor="contactService"
+                  className="block text-sm font-semibold text-charcoal mb-2"
+                >
                   Service Interest *
                 </Label>
-                <Select value={formData.serviceInterest} onValueChange={(value) => handleInputChange("serviceInterest", value)}>
+                <Select
+                  value={formData.serviceInterest}
+                  onValueChange={(value) =>
+                    handleInputChange("serviceInterest", value)
+                  }
+                >
                   <SelectTrigger className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-300">
                     <SelectValue placeholder="Select a service" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="social-media">Social Media Management</SelectItem>
-                    <SelectItem value="content-creation">Content Creation</SelectItem>
-                    <SelectItem value="business-strategy">Business Strategy</SelectItem>
-                    <SelectItem value="graphics-design">Graphics Design</SelectItem>
+                    <SelectItem value="social-media">
+                      Social Media Management
+                    </SelectItem>
+                    <SelectItem value="content-creation">
+                      Content Creation
+                    </SelectItem>
+                    <SelectItem value="business-strategy">
+                      Business Strategy
+                    </SelectItem>
+                    <SelectItem value="graphics-design">
+                      Graphics Design
+                    </SelectItem>
                     <SelectItem value="web-design">Web Design</SelectItem>
                     <SelectItem value="all-services">All Services</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div>
-                <Label htmlFor="contactMessage" className="block text-sm font-semibold text-charcoal mb-2">
+                <Label
+                  htmlFor="contactMessage"
+                  className="block text-sm font-semibold text-charcoal mb-2"
+                >
                   Message *
                 </Label>
                 <Textarea

@@ -12,8 +12,22 @@ export default function Articles() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const { isVisible: heroVisible, elementRef: heroRef } = useScrollAnimation();
-  const { isVisible: featuredVisible, elementRef: featuredRef } = useScrollAnimation({ threshold: 0.1 });
-  const { isVisible: articlesVisible, elementRef: articlesRef } = useScrollAnimation({ threshold: 0.1 });
+
+  const { isVisible: featuredVisible, elementRef: featuredRef } =
+    useScrollAnimation({
+      threshold: 0.1,
+      rootMargin: "45% 0px -10% 0px",
+
+      // or just omit it since false is default
+    });
+
+  const { isVisible: articlesVisible, elementRef: articlesRef } =
+    useScrollAnimation({
+      threshold: 0.1,
+      rootMargin: "75% 0px -20% 0px",
+
+      // or just omit it since false is default
+    });
 
   const categories = [
     "All",
@@ -191,13 +205,17 @@ export default function Articles() {
       {featuredArticles.length > 0 && (
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div 
+            <div
               ref={featuredRef}
               className={`text-center mb-12 transition-all duration-1000 ${
-                featuredVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                featuredVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
             >
-              <h2 className="text-3xl font-bold font-poppins">Featured Articles</h2>
+              <h2 className="text-3xl font-bold font-poppins">
+                Featured Articles
+              </h2>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {featuredArticles.map((article, index) => (
@@ -264,13 +282,17 @@ export default function Articles() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {featuredArticles.length > 0 && (
-            <div 
+            <div
               ref={articlesRef}
               className={`text-center mb-12 transition-all duration-1000 ${
-                articlesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                articlesVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
               }`}
             >
-              <h2 className="text-3xl font-bold font-poppins">Latest Articles</h2>
+              <h2 className="text-3xl font-bold font-poppins">
+                Latest Articles
+              </h2>
             </div>
           )}
 

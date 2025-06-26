@@ -6,7 +6,12 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 export default function About() {
   const { isVisible: heroVisible, elementRef: heroRef } = useScrollAnimation();
   const { isVisible: missionVisible, elementRef: missionRef } = useScrollAnimation();
-  const { isVisible: valuesVisible, elementRef: valuesRef } = useScrollAnimation();
+  const { isVisible: valuesVisible, elementRef: valuesRef } = useScrollAnimation({
+      threshold: 0.1,
+      rootMargin: "45% 0px -10% 0px",
+
+      // or just omit it since false is default
+    });
   const { isVisible: whyVisible, elementRef: whyRef } = useScrollAnimation();
 
   const values = [
@@ -178,7 +183,7 @@ export default function About() {
                   className={`bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 ${
                     valuesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
-                  style={{ transitionDelay: `${index * 150}ms` }}
+                  style={{ transitionDelay: `${index * 20}ms` }}
                 >
                   <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto">
                     <Icon className="w-8 h-8 text-primary" />

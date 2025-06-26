@@ -155,10 +155,13 @@ export default function Services() {
               return (
                 <div
                   key={index}
-                  className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border ${colorClasses.border} ${
-                    servicesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  className={`group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-neutral ${
+                    servicesVisible
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-8"
                   }`}
-                  style={{ transitionDelay: `${index * 150}ms` }}
+
+                  style={{ transitionDelay: `${index * 20}ms` }}
                 >
                   <div className={`w-20 h-20 ${colorClasses.bg} rounded-2xl flex items-center justify-center mb-6`}>
                     <Icon className={`w-10 h-10 ${colorClasses.text}`} />
