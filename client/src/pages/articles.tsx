@@ -149,7 +149,7 @@ export default function Articles() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-20 bg-gradient-to-br from-primary/5 to-white">
+      <section className="pt-24 pb-16 bg-gradient-to-br from-primary/5 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             ref={heroRef}
@@ -203,7 +203,7 @@ export default function Articles() {
 
       {/* Featured Articles */}
       {featuredArticles.length > 0 && (
-        <section className="py-20 bg-gray-50">
+        <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div
               ref={featuredRef}
@@ -279,7 +279,7 @@ export default function Articles() {
       )}
 
       {/* Regular Articles */}
-      <section className="py-20">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {featuredArticles.length > 0 && (
             <div

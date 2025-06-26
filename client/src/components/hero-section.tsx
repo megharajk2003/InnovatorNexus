@@ -22,10 +22,10 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="pt-16 pb-13 bg-gradient-to-br from-primary/5 to-secondary/5"
+      className="pt-16 pb-16 bg-gradient-to-br from-primary/5 to-secondary/5"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           <div ref={heroRef} className="space-y-8">
             <h1
               className={`text-5xl lg:text-6xl font-bold font-poppins leading-tight transition-all duration-1000 ${

@@ -72,13 +72,21 @@ The deployment uses autoscale configuration for handling traffic variations, wit
 
 ## Recent Changes
 
-- June 25, 2025: Enhanced website with new pages and improved navigation
+- June 26, 2025: Updated content and spacing for startup company status
+  - Updated company information to reflect newly founded status (2024)
+  - Adjusted statistics and testimonials for realistic startup metrics
+  - Reduced section padding from py-32 to py-20/py-16 for better desktop spacing
+  - Modified hero section height from full screen to 80vh for better proportions
+  - Updated language throughout site to emphasize fresh perspective and innovation
+
+- June 26, 2025: Enhanced website with new pages and improved navigation
   - Added About Us page with company mission, values, and why choose us sections
   - Created dedicated Services page with large icons and newsletter subscription
   - Added Articles page with search, filtering, and featured articles
   - Updated navigation with hamburger menu positioned on left side
   - Replaced service section images with large, colorful icons for better visual appeal
   - Improved responsive design and user experience across all pages
+  - Fixed scroll animation issues in Articles page
 
 - June 25, 2025: Initial setup
 

@@ -39,12 +39,12 @@ export default function About() {
 
   const whyChooseUs = [
     {
-      title: "Proven Track Record",
-      description: "Over 500+ successful projects delivered across various industries"
+      title: "Fresh Perspective",
+      description: "Innovative approaches with 25+ successful projects delivered across various industries"
     },
     {
-      title: "Expert Team",
-      description: "Certified professionals with 10+ years of combined experience"
+      title: "Passionate Team",
+      description: "Dedicated professionals with diverse backgrounds and combined expertise"
     },
     {
       title: "Data-Driven Approach",
@@ -69,7 +69,7 @@ export default function About() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-20 bg-gradient-to-br from-primary/5 to-white">
+      <section className="pt-24 pb-16 bg-gradient-to-br from-primary/5 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
             ref={heroRef}
@@ -89,7 +89,7 @@ export default function About() {
       </section>
 
       {/* Company Story & Mission */}
-      <section className="py-20">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
             ref={missionRef}
@@ -107,9 +107,9 @@ export default function About() {
                 their communities through strategic digital solutions that drive real results.
               </p>
               <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                Founded in 2020, we've grown from a small team of digital enthusiasts to a 
-                comprehensive service provider trusted by businesses worldwide. We combine creativity 
-                with data-driven insights to deliver solutions that not only look great but perform exceptionally.
+                As a newly founded company in 2024, we're an ambitious team of digital enthusiasts 
+                passionate about helping businesses establish their online presence. We combine fresh 
+                perspectives with proven strategies to deliver innovative solutions that perform exceptionally.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
@@ -133,16 +133,16 @@ export default function About() {
                   <div className="text-center">
                     <div className="grid grid-cols-2 gap-8">
                       <div>
-                        <div className="text-4xl font-bold text-primary mb-2">500+</div>
+                        <div className="text-4xl font-bold text-primary mb-2">25+</div>
                         <div className="text-gray-600">Projects Completed</div>
                       </div>
                       <div>
-                        <div className="text-4xl font-bold text-primary mb-2">50+</div>
+                        <div className="text-4xl font-bold text-primary mb-2">15+</div>
                         <div className="text-gray-600">Happy Clients</div>
                       </div>
                       <div>
-                        <div className="text-4xl font-bold text-primary mb-2">5</div>
-                        <div className="text-gray-600">Years Experience</div>
+                        <div className="text-4xl font-bold text-primary mb-2">2024</div>
+                        <div className="text-gray-600">Founded</div>
                       </div>
                       <div>
                         <div className="text-4xl font-bold text-primary mb-2">24/7</div>
@@ -158,7 +158,7 @@ export default function About() {
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
             ref={valuesRef}
@@ -198,7 +198,7 @@ export default function About() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
             ref={whyRef}

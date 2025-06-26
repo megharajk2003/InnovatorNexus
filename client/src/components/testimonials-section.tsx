@@ -10,7 +10,7 @@ export default function TestimonialsSection() {
       title: "CEO, TechStart Solutions",
       initials: "SM",
       rating: 5,
-      text: "Innovator Nexus completely transformed our social media presence. Our engagement increased by 400% in just 3 months, and we've seen a significant boost in qualified leads.",
+      text: "Innovator Nexus delivered exceptional results for our startup. Their fresh approach to social media helped us grow our following by 300% and generate quality leads.",
       color: "primary",
     },
     {
@@ -45,7 +45,7 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section id="testimonials" className="py-32 bg-neutral">
+    <section id="testimonials" className="py-20 bg-neutral">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div 
           ref={titleRef}
