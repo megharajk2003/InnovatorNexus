@@ -15,7 +15,7 @@ export default function CareersSection() {
     {
       title: "Senior Social Media Manager",
       type: "Full-time • Remote",
-      salary: "$70,000 - $90,000",
+      
       description:
         "Lead social media strategy for multiple clients, manage content calendars, and drive engagement across all platforms.",
       skills: ["Social Media", "Strategy", "Analytics"],
@@ -24,7 +24,7 @@ export default function CareersSection() {
     {
       title: "Content Creator & Copywriter",
       type: "Full-time • Remote",
-      salary: "$60,000 - $75,000",
+      
       description:
         "Create engaging content across multiple formats including blog posts, social media content, and marketing materials.",
       skills: ["Content Writing", "Copywriting", "SEO"],
@@ -33,7 +33,7 @@ export default function CareersSection() {
     {
       title: "Graphic Designer",
       type: "Full-time • Hybrid",
-      salary: "$55,000 - $70,000",
+      
       description:
         "Design visual assets for digital and print media, create brand identities, and collaborate with marketing teams.",
       skills: ["Adobe Creative Suite", "Brand Design", "UI/UX"],
@@ -42,7 +42,7 @@ export default function CareersSection() {
     {
       title: "Web Designer & Developer",
       type: "Full-time • Remote",
-      salary: "$65,000 - $80,000",
+      
       description:
         "Create modern, responsive websites and web applications with exceptional user experiences and optimal performance.",
       skills: ["HTML/CSS", "JavaScript", "React", "Responsive Design"],
@@ -166,9 +166,7 @@ export default function CareersSection() {
                       <h4 className="text-xl font-semibold font-poppins text-charcoal">
                         {job.title}
                       </h4>
-                      <p className="text-gray-600">
-                        {job.type} • {job.salary}
-                      </p>
+                      
                     </div>
                     <p className="text-gray-700">{job.description}</p>
                     <div className="flex flex-wrap gap-2">
